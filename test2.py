@@ -1,8 +1,15 @@
 # -*- coding: utf-8 -*-
+# @Author: Lenovo1
+# @Date:   2020-08-14 10:20:38
+# @Last Modified by:   Lenovo1
+# @Last Modified time: 2020-08-14 10:40:35
+
+
+# -*- coding: utf-8 -*-
 # @Author: wanglu
 # @Date:   2020-08-12 14:54:15
 # @Last Modified by:   Lenovo1
-# @Last Modified time: 2020-08-14 10:21:59
+# @Last Modified time: 2020-08-14 09:49:18
 # 
 """
 discover currently known O-antigen biosynthesis gene clusters or
@@ -111,11 +118,11 @@ def generate_blast(OACs, gene, genome):
 def O_antigen_cluster(OACs, genome, outfmt = 0):
 	O_AGCs = seperate_sequence(OACs)
 
-	g_name = sequence[::-1]
+	g_name = genome[::-1]
 	g_name = g_name[g_name.find(".")+1:][::-1]
 	wf = open(g_name+"1.fasta", "w")
 	trait = "wlu"
-	with open(sequence) as f:
+	with open(genome) as f:
 		for line in f:
 			if ">" in line:
 				contig_name = line.strip("\n").split(" ")[0][1:]
@@ -132,55 +139,27 @@ def O_antigen_cluster(OACs, genome, outfmt = 0):
 	new_genome = seperate_sequence(g_name+"1.fasta")
 
 	galF_result = generate_blast(OACs=O_AGCs, genome=g_name+"1.fasta", gene="galF")
-	gnd_result = generate_blast(OACs=O_AGCs, genome=g_name+"1.fasta", gene="galF")
-
-	galF_identity = float(galF_split[2])
-	gnd_identity = float(gnd_split[2])
-	galF_coverage = float(galF_split[3])/891
-	gnd_coverage = float(gnd_split[3])/1407
+	gnd_result = generate_blast(OACs=O_AGCs, genome=g_name+"1.fasta", gene="gnd")
 
 	if galF_result=="bad" or gnd_result=="bad":
-		return("bad")
+		return("bad1")
 	else:
 		galF_split = galF_result.split("\t")
 		gnd_split  = gnd_result.split("\t")
-		if galF_split == gnd_split[1]:
+		if galF_split[0] == gnd_split[0]:
 			galF_identity = float(galF_split[2])
 			gnd_identity = float(gnd_split[2])
 			galF_coverage = float(galF_split[3])/891
 			gnd_coverage = float(gnd_split[3])/1407
 			if galF_coverage>0.6 and gnd_coverage>0.6 and galF_identity>80 and gnd_identity>80:
 				aim_sequence = list(new_genome)[0].get(galF_split[1])
-				if float(galF_split[6])<float(gnd_split[6]) and float(galF_split[8])<float(galF_split[9]:
-					
+				if float(galF_split[6]) < float(gnd_split[6]) and float(galF_split[8]) < float(galF_split[9]:
 					my_sequence = aim_sequence[int(galF_split[6]):int(gnd_split[7])]
-
-
-				elif float(galF_split[6])>float(gnd_split[6]) and float(galF_split[8])>float(galF_split[9]:
-
+					print(my_sequence)
+		#	return(galF_identity, galF_coverage, gnd_identity, gnd_coverage)
 		else:
-			return("bad")
+			return("bad2")
 
 
-
-
-
-
-
-
-# tran_genome("MaO2_LMG23826.fna")
-
-
-
-
-
-#def generate_blast(sequence, genmoe, gene):
-
-
-#	wf = open("galF.fasta", "w")
-#	with open(OAGCs) as f:
-#		for line in f:
-#			if "galF" in line:
-#				wf.write(line)
-#				wf.write(next(f))
-#	os.system("makeblastdb -in galF -dbtype nucl -out galF")
+wl = O_antigen_cluster(OACs="Cronobacter_OACs.fasta", genome = "MaO2_LMG23826.fna", outfmt = 0)
+print(wl)
