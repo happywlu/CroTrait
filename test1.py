@@ -2,7 +2,7 @@
 # @Author: wanglu
 # @Date:   2020-08-12 14:54:15
 # @Last Modified by:   Lenovo1
-# @Last Modified time: 2020-08-14 10:21:59
+# @Last Modified time: 2020-08-14 16:52:55
 # 
 """
 discover currently known O-antigen biosynthesis gene clusters or
@@ -151,36 +151,13 @@ def O_antigen_cluster(OACs, genome, outfmt = 0):
 			gnd_coverage = float(gnd_split[3])/1407
 			if galF_coverage>0.6 and gnd_coverage>0.6 and galF_identity>80 and gnd_identity>80:
 				aim_sequence = list(new_genome)[0].get(galF_split[1])
-				if float(galF_split[6])<float(gnd_split[6]) and float(galF_split[8])<float(galF_split[9]:
-					
+				if float(galF_split[6])<float(gnd_split[6]) and float(galF_split[8])<float(galF_split[9]):
+
 					my_sequence = aim_sequence[int(galF_split[6]):int(gnd_split[7])]
 
 
-				elif float(galF_split[6])>float(gnd_split[6]) and float(galF_split[8])>float(galF_split[9]:
+				elif float(galF_split[6])>float(gnd_split[6]) and float(galF_split[8])>float(galF_split[9]):
 
 		else:
 			return("bad")
 
-
-
-
-
-
-
-
-# tran_genome("MaO2_LMG23826.fna")
-
-
-
-
-
-#def generate_blast(sequence, genmoe, gene):
-
-
-#	wf = open("galF.fasta", "w")
-#	with open(OAGCs) as f:
-#		for line in f:
-#			if "galF" in line:
-#				wf.write(line)
-#				wf.write(next(f))
-#	os.system("makeblastdb -in galF -dbtype nucl -out galF")

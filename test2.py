@@ -1,19 +1,12 @@
 # -*- coding: utf-8 -*-
-# @Author: Lenovo1
-# @Date:   2020-08-14 10:20:38
-# @Last Modified by:   Lenovo1
-# @Last Modified time: 2020-08-14 10:40:35
-
-
-# -*- coding: utf-8 -*-
-# @Author: wanglu
+# @Author: Wanglu
 # @Date:   2020-08-12 14:54:15
 # @Last Modified by:   Lenovo1
-# @Last Modified time: 2020-08-14 09:49:18
+# @Last Modified time: 2020-08-14 16:52:58
 # 
 """
 discover currently known O-antigen biosynthesis gene clusters or
-predict new O-antigen biosynthesis gene clusters.
+predict new O-antigen biosynthesis gene clusters in Cronobacter genus.
 
 Written by Wanglu
 contacted at wlubio@sina.com
@@ -34,7 +27,7 @@ from Bio.Alphabet import IUPAC
 
 pt = os.getcwd()
 
-speies_O_antigen = {"condimenti":["CO1"],
+species_Oserotype = {"condimenti":["CO1"],
 					"dublinensis":["DO1a", "DO1b", "DO2"],
 					"malonaticus":["MaO1", "MaO2", "MaO3", "MaO4"],
 					"muytjensii":["MuO1", "MuO2"],
@@ -56,7 +49,7 @@ galF_gnd = ["galF", "gnd"]
 def tran_sequence(sequence):
 	g_name = sequence[::-1]
 	g_name = g_name[g_name.find(".")+1:][::-1]
-	wf = open(g_name+"1.fasta", "w")
+	wf = open(g_name+"_1.fasta", "w")
 	trait = "wlu"
 	with open(sequence) as f:
 		for line in f:
@@ -116,11 +109,12 @@ def generate_blast(OACs, gene, genome):
 
 
 def O_antigen_cluster(OACs, genome, outfmt = 0):
+
 	O_AGCs = seperate_sequence(OACs)
 
 	g_name = genome[::-1]
 	g_name = g_name[g_name.find(".")+1:][::-1]
-	wf = open(g_name+"1.fasta", "w")
+	wf = open(g_name+"_1.fasta", "w")
 	trait = "wlu"
 	with open(genome) as f:
 		for line in f:
@@ -136,13 +130,14 @@ def O_antigen_cluster(OACs, genome, outfmt = 0):
 	wf.write("\n")
 	wf.close()
 
-	new_genome = seperate_sequence(g_name+"1.fasta")
+	new_genome = seperate_sequence(g_name+"_1.fasta")
 
-	galF_result = generate_blast(OACs=O_AGCs, genome=g_name+"1.fasta", gene="galF")
-	gnd_result = generate_blast(OACs=O_AGCs, genome=g_name+"1.fasta", gene="gnd")
+	galF_result = generate_blast(OACs=O_AGCs, genome=g_name+"_1.fasta", gene="galF")
+	gnd_result = generate_blast(OACs=O_AGCs, genome=g_name+"_1.fasta", gene="gnd")
+	os.remove(g_name+"_1.fasta")
 
 	if galF_result=="bad" or gnd_result=="bad":
-		return("bad1")
+		return("bad")
 	else:
 		galF_split = galF_result.split("\t")
 		gnd_split  = gnd_result.split("\t")
@@ -151,15 +146,86 @@ def O_antigen_cluster(OACs, genome, outfmt = 0):
 			gnd_identity = float(gnd_split[2])
 			galF_coverage = float(galF_split[3])/891
 			gnd_coverage = float(gnd_split[3])/1407
-			if galF_coverage>0.6 and gnd_coverage>0.6 and galF_identity>80 and gnd_identity>80:
-				aim_sequence = list(new_genome)[0].get(galF_split[1])
-				if float(galF_split[6]) < float(gnd_split[6]) and float(galF_split[8]) < float(galF_split[9]:
-					my_sequence = aim_sequence[int(galF_split[6]):int(gnd_split[7])]
-					print(my_sequence)
-		#	return(galF_identity, galF_coverage, gnd_identity, gnd_coverage)
+			if galF_coverage > 0.6 and gnd_coverage > 0.6 and galF_identity > 80 and gnd_identity > 80:
+				aim_sequence = list(new_genome)[0].get(galF_split[0])
+				lst = [int(galF_split[6]), int(galF_split[7]), int(gnd_split[6]), int(gnd_split[7])]
+				my_sequence = aim_sequence[min(lst)-1:max(lst)]
+				if float(galF_split[6]) < float(gnd_split[6]) and float(galF_split[8]) < float(galF_split[9]):
+					if outfmt == 0:
+						return("yes")
+					elif outfmt == 1:
+						with open(g_name+"_OAGCs.fasta", "w") as wf:
+							wf.write(">"+g_name+"\n")
+							wf.write(my_sequence+"\n")
+				elif float(galF_split[6]) > float(gnd_split[6]) and float(galF_split[8]) > float(galF_split[9]):
+					my_sequence = Seq(my_sequence, IUPAC.unambiguous_dna)
+					my_sequence = my_sequence.reverse_complement()
+					my_sequence = str(my_sequence)
+					if outfmt == 0:
+						return("yes")
+					elif outfmt == 1:
+						with open(g_name+"_OAGCs.fasta", "w") as wf:
+							wf.write(">"+g_name+"\n")
+							wf.write(my_sequence+"\n")
+				else:
+					return("bad")
 		else:
-			return("bad2")
+			return("bad")
 
 
-wl = O_antigen_cluster(OACs="Cronobacter_OACs.fasta", genome = "MaO2_LMG23826.fna", outfmt = 0)
-print(wl)
+def O_serotype(OACs_sequence, genome, species):
+	serotype = species_Oserotype.get(species)
+	OACs = list(seperate_sequence(OACs_sequence))
+	contig_name = OACs[1]
+	contig_sequence = OACs[0]
+	wf = open("specific_gene.fasta", "w")
+	for i in contig_name:
+		for sero in serotype:
+			if sero in i:
+				if "wzx" in i or "wzm" in i:
+					wf.write(">"+i+"\n")
+					wf.write(contig_sequence.get(i)+"\n")
+	wf.close()
+
+	wzx_wzm = seperate_sequence("specific_gene.fasta")
+
+	os.system("makeblastdb -in specific_gene.fasta -dbtype nucl -out wzx_or_wzm")
+	os.system("blastn -query "+genome+" -db wzx_or_wzm -outfmt 6 -out wzx_or_wzm.txt")
+	result = open("wzx_or_wzm.txt").readline()
+	print(result)
+	os.remove("wzx_or_wzm.txt")
+	os.remove("wzx_or_wzm.nhr")
+	os.remove("wzx_or_wzm.nin")
+	os.remove("wzx_or_wzm.nsq")
+	os.remove("specific_gene.fasta")
+
+	if len(result) == 0:
+		new_type = O_antigen_cluster(OACs = OACs_sequence, genome = genome, outfmt = 0)
+		if new_type == "yes":
+			return(["new"])
+		else:
+			return("bad")
+	else:
+		result_split = result.split("\t")
+		result_identity = float(result_split[2])
+		coverage = float(result_split[3])/float(list(wzx_wzm)[2].get(result_split[1]))
+		if result_identity > 75:
+			if coverage > 0.4:
+				idetified_serotype = result_split[1].split("_")[0]
+				return(idetified_serotype)
+			else:
+				return("bad")
+		else:
+			new_type = O_antigen_cluster(OACs = OACs_sequence, genome = genome, outfmt = 0)
+			if new_type == "yes":
+				return("new")
+			else:
+				return("bad")
+
+
+
+
+
+wlu = O_serotype(OACs_sequence = "Cronobacter_OACs.fasta", genome="id-108.fas", species="sakazakii")
+
+print(wlu)
