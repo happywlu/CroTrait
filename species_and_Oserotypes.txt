@@ -1,7 +1,0 @@
-condimenti	CO1
-dublinensis	DO1a	DO1b	DO2
-malonaticus	MaO1	MaO2	MaO3	MaO4
-muytjensii	MuO1	MuO2
-sakazakii	SO1	SO2	SO3	SO4	SO6	SO7
-turicensis	TO1	TO3	TO4
-universalis	UO1
