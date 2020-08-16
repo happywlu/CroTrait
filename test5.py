@@ -2,7 +2,7 @@
 # @Author: Wanglu
 # @Date:   2020-08-12 14:54:15
 # @Last Modified by:   Lenovo1
-# @Last Modified time: 2020-08-14 19:37:13
+# @Last Modified time: 2020-08-15 00:53:38
 # 
 """
 discover currently known O-antigen biosynthesis gene clusters or
@@ -14,9 +14,11 @@ contacted at wlubio@sina.com
 
 from __future__ import print_function
 import os
+import sys
 from Bio.Seq import Seq
 from Bio.Alphabet import IUPAC
 import subprocess
+from shutil import copy
 # import argparse
 
 # parser = argparse.ArgumentParser(description='wanwglu')
@@ -24,8 +26,6 @@ import subprocess
 # parser.add_argument('--cluster', '-c', type=str, required=True)
 # parser.add_argument('--extract', '-o', type=str, required=True)
 # args = parser.parse_args()
-
-pt = os.getcwd()
 
 species_Oserotype = {"condimenti":["CO1"],
 					"dublinensis":["DO1a", "DO1b", "DO2"],
@@ -98,10 +98,9 @@ def generate_blast(OACs, gene, genome):
 
 
 def O_antigen_cluster(OACs, genome, outfmt = 0):
-	abs_path = os.path.abspath("%s" % genome)
-	g_name = os.path.split(abs_path)[1]
 
 	O_AGCs = seperate_sequence(OACs)
+	g_name = os.path.split(genome)[1]
 
 	g_name = g_name[::-1]
 	g_name = g_name[g_name.find(".")+1:][::-1]
@@ -145,9 +144,7 @@ def O_antigen_cluster(OACs, genome, outfmt = 0):
 					if outfmt == 0:
 						return("yes")
 					elif outfmt == 1:
-						with open(g_name+"_OAGCs.fasta", "w") as wf:
-							wf.write(">"+g_name+"\n")
-							wf.write(my_sequence+"\n")
+						return(my_sequence)
 				elif float(galF_split[6]) > float(gnd_split[6]) and float(galF_split[8]) > float(galF_split[9]):
 					my_sequence = Seq(my_sequence, IUPAC.unambiguous_dna)
 					my_sequence = my_sequence.reverse_complement()
@@ -155,9 +152,7 @@ def O_antigen_cluster(OACs, genome, outfmt = 0):
 					if outfmt == 0:
 						return("yes")
 					elif outfmt == 1:
-						with open(g_name+"_OAGCs.fasta", "w") as wf:
-							wf.write(">"+g_name+"\n")
-							wf.write(my_sequence+"\n")
+						return(my_sequence)
 				else:
 					return("bad")
 		else:
@@ -165,10 +160,7 @@ def O_antigen_cluster(OACs, genome, outfmt = 0):
 
 # os.path.split()
 def O_serotype(OACs_sequence, genome, species):
-	abs_path = os.path.abspath("%s" % genome)
-	g_name = os.path.split(abs_path)[1]
-	print(g_name)
-	g_name = g_name[::-1]
+	g_name = genome[::-1]
 	g_name = g_name[g_name.find(".")+1:][::-1]
 
 	serotype = species_Oserotype.get(species)
@@ -187,7 +179,7 @@ def O_serotype(OACs_sequence, genome, species):
 	wzx_wzm = seperate_sequence("specific_gene.fasta")
 
 	os.system("makeblastdb -in specific_gene.fasta -dbtype nucl -out wzx_or_wzm")
-	os.system("blastn -query "+abs_path+" -db wzx_or_wzm -outfmt 6 -out wzx_or_wzm.txt")
+	os.system("blastn -query "+genome+" -db wzx_or_wzm -outfmt 6 -out wzx_or_wzm.txt")
 	result = open("wzx_or_wzm.txt").readline()
 	os.remove("wzx_or_wzm.txt")
 	os.remove("wzx_or_wzm.nhr")
@@ -219,28 +211,37 @@ def O_serotype(OACs_sequence, genome, species):
 				return([species,g_name,"bad"])
 
 
-def main(OACs_sequence, genome_directory, species, blast):
+def main(OACs_sequence, genome_directory, species, blast, out_file, new_O_file):
+
 	star_dir = os.getcwd()
-	abs_path = os.path.abspath("%s" % star_dir)
 	dir_path = os.path.abspath("%s" % genome_directory)
 	if blast == "blastn":
+		# windows subprocess.call(["where", "blastn"]); linux subprocess.call(["which", blastn"])
 		ab = subprocess.call(["where", "blastn"])
 		if ab == 0:
-			print("welcome O antigen cluster finder, please citate: XXXXXXXX")
+			print("welcome to O antigen cluster finder, please citate: XXXXX")
 		else:
-			print("blastn isn't in local path, please install blast or add it to path")
+			print("blastn don't exist in path, please install or add it !")
 			sys.exit()
+	else:
+		print("please check the right spelling of blastn !")
+		sys.exit()
+	wf1 = open(os.path.join(star_dir, out_file), "w")
+	wf2 = open(os.path.join(star_dir, new_O_file), "w")
 	for i in os.listdir(dir_path):
-		genome1 = os.path.join(dir_path, i)
-		m = O_serotype(OACs_sequence=OACs_sequence, genome=genome1, species=species)
-		print(m)
-		
-
-main(OACs_sequence="Cronobacter_OACs.fasta", genome_directory="example_sequence", species="sakazakii",blast="blastn")
-
-
-
-
-wlu = O_serotype(OACs_sequence = "Cronobacter_OACs.fasta", genome="SO1_ATCC29544.fna", species="sakazakii")
-
-print(wlu)
+		copy(os.path.join(dir_path,i), star_dir)
+		m = O_serotype(OACs_sequence=OACs_sequence, genome=i, species=species)
+		wf1.write("\t".join(m)+"\n")
+		if m[2] == "new":
+			gn = i[::-1]
+			gn = gn[gn.find(".")+1:][::-1]
+			new_fasta = O_antigen_cluster(OACs=OACs_sequence, genome=i, outfmt=1)
+			wf2.write(">"+gn+"\n")
+			wf2.write(new_fasta+"\n")
+		os.remove(os.path.join(star_dir,i))
+	wf1.close()
+	wf2.close()
+	
+if __name__ == "__main__":
+	main(OACs_sequence="Cronobacter_OACs.fasta", genome_directory="genomeFromMLST",
+		species="sakazakii", out_file="wanglu.txt", blast="blastn", new_O_file="new_O_serotype.fasta")

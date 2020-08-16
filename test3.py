@@ -2,7 +2,7 @@
 # @Author: Wanglu
 # @Date:   2020-08-12 14:54:15
 # @Last Modified by:   Lenovo1
-# @Last Modified time: 2020-08-14 19:37:13
+# @Last Modified time: 2020-08-14 20:39:45
 # 
 """
 discover currently known O-antigen biosynthesis gene clusters or
@@ -98,10 +98,9 @@ def generate_blast(OACs, gene, genome):
 
 
 def O_antigen_cluster(OACs, genome, outfmt = 0):
-	abs_path = os.path.abspath("%s" % genome)
-	g_name = os.path.split(abs_path)[1]
 
 	O_AGCs = seperate_sequence(OACs)
+	g_name = os.path.split(genome)[1]
 
 	g_name = g_name[::-1]
 	g_name = g_name[g_name.find(".")+1:][::-1]
@@ -165,8 +164,7 @@ def O_antigen_cluster(OACs, genome, outfmt = 0):
 
 # os.path.split()
 def O_serotype(OACs_sequence, genome, species):
-	abs_path = os.path.abspath("%s" % genome)
-	g_name = os.path.split(abs_path)[1]
+	g_name = os.path.split(genome)[1]
 	print(g_name)
 	g_name = g_name[::-1]
 	g_name = g_name[g_name.find(".")+1:][::-1]
@@ -187,7 +185,7 @@ def O_serotype(OACs_sequence, genome, species):
 	wzx_wzm = seperate_sequence("specific_gene.fasta")
 
 	os.system("makeblastdb -in specific_gene.fasta -dbtype nucl -out wzx_or_wzm")
-	os.system("blastn -query "+abs_path+" -db wzx_or_wzm -outfmt 6 -out wzx_or_wzm.txt")
+	os.system("blastn -query "+genome+" -db wzx_or_wzm -outfmt 6 -out wzx_or_wzm.txt")
 	result = open("wzx_or_wzm.txt").readline()
 	os.remove("wzx_or_wzm.txt")
 	os.remove("wzx_or_wzm.nhr")
@@ -219,7 +217,7 @@ def O_serotype(OACs_sequence, genome, species):
 				return([species,g_name,"bad"])
 
 
-def main(OACs_sequence, genome_directory, species, blast):
+def main(OACs_sequence, genome_directory, species, blast , out_file):
 	star_dir = os.getcwd()
 	abs_path = os.path.abspath("%s" % star_dir)
 	dir_path = os.path.abspath("%s" % genome_directory)
@@ -230,17 +228,18 @@ def main(OACs_sequence, genome_directory, species, blast):
 		else:
 			print("blastn isn't in local path, please install blast or add it to path")
 			sys.exit()
-	for i in os.listdir(dir_path):
+	wf = open(os.path.join(star_dir, out_file), "w")
+	for i in dir_path:
 		genome1 = os.path.join(dir_path, i)
-		m = O_serotype(OACs_sequence=OACs_sequence, genome=genome1, species=species)
-		print(m)
-		
-
-main(OACs_sequence="Cronobacter_OACs.fasta", genome_directory="example_sequence", species="sakazakii",blast="blastn")
+		my_type = O_serotype(OACs_sequence = OACs_sequence, genome = genome1, species = species)
+		wf.write(my_type+"\n")
+	wf.close()
 
 
+main(OACs_sequence="Cronobacter_OACs.fasta", genome_directory="example_sequence", 
+	blast = "blastn", species = "sakazakii", out_file = "wanglu.txt")
 
 
-wlu = O_serotype(OACs_sequence = "Cronobacter_OACs.fasta", genome="SO1_ATCC29544.fna", species="sakazakii")
 
-print(wlu)
+
+
