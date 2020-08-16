@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: Wanglu
 # @Date:   2020-08-12 14:54:15
-# @Last Modified by:   Lenovo1
-# @Last Modified time: 2020-08-15 00:53:38
+# @Last Modified by:   happy
+# @Last Modified time: 2020-08-16 09:54:51
 # 
 """
 discover currently known O-antigen biosynthesis gene clusters or
@@ -243,5 +243,5 @@ def main(OACs_sequence, genome_directory, species, blast, out_file, new_O_file):
 	wf2.close()
 	
 if __name__ == "__main__":
-	main(OACs_sequence="Cronobacter_OACs.fasta", genome_directory="genomeFromMLST",
+	main(OACs_sequence="Cronobacter_OACs.fasta", genome_directory="example_sequence",
 		species="sakazakii", out_file="wanglu.txt", blast="blastn", new_O_file="new_O_serotype.fasta")
