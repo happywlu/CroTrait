@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: Wanglu
 # @Date:   2020-08-12 14:54:15
-# @Last Modified by:   happy
-# @Last Modified time: 2020-08-16 10:22:25
+# @Last Modified by:   Lenovo1
+# @Last Modified time: 2020-08-17 14:54:38
 # 
 """
 discover currently known O-antigen biosynthesis gene clusters or
@@ -104,7 +104,7 @@ def O_antigen_cluster(OACs, genome, outfmt = 0):
 
 	g_name = g_name[::-1]
 	g_name = g_name[g_name.find(".")+1:][::-1]
-	
+
 	tran_sequence(genome)
 
 	new_genome = seperate_sequence(g_name+"_1.fasta")
@@ -177,25 +177,25 @@ def O_serotype(OACs_sequence, genome, species):
 	if len(result) == 0:
 		new_type = O_antigen_cluster(OACs = OACs_sequence, genome = genome, outfmt = 0)
 		if new_type == "yes":
-			return([species,g_name,"new"])
+			return([species,g_name,"new", str(0)])
 		else:
-			return([species,g_name,"bad"])
+			return([species,g_name,"bad", str(0)])
 	else:
 		result_split = result.split("\t")
 		result_identity = float(result_split[2])
 		coverage = float(result_split[3])/float(list(wzx_wzm)[2].get(result_split[1]))
-		if result_identity > 75:
-			if coverage > 0.4:
+		if result_identity > 98:
+			if coverage > 0.5:
 				idetified_serotype = result_split[1].split("_")[0]
-				return([species,g_name,idetified_serotype])
+				return([species,g_name,idetified_serotype, str(result_identity)])
 			else:
-				return([species,g_name,"bad"])
+				return([species,g_name,"bad", str(result_identity)])
 		else:
 			new_type = O_antigen_cluster(OACs = OACs_sequence, genome = genome, outfmt = 0)
 			if new_type == "yes":
-				return([species,g_name,"new"])
+				return([species,g_name,"new", str(result_identity)])
 			else:
-				return([species,g_name,"bad"])
+				return([species,g_name,"bad",str(result_identity)])
 
 
 def main(OACs_sequence, genome_directory, species, blast, out_file, new_O_file):
@@ -228,7 +228,7 @@ def main(OACs_sequence, genome_directory, species, blast, out_file, new_O_file):
 		os.remove(os.path.join(star_dir,i))
 	wf1.close()
 	wf2.close()
-	
+
 if __name__ == "__main__":
-	main(OACs_sequence="Cronobacter_OACs.fasta", genome_directory="example_sequence",
-		species="sakazakii", out_file="wanglu.txt", blast="blastn", new_O_file="new_O_serotype.fasta")
+	main(OACs_sequence="Cronobacter_OACs.fasta", genome_directory="C. sakazakii",
+		species="sakazakii", out_file="C. sakazakii.txt", blast="blastn", new_O_file="C. sakazakii.fasta")
