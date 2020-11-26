@@ -1,6 +1,5 @@
 # CroTrait
-
-<img src="https://github.com/happywlu/CroTrait/tree/master/assist/icon.jpg" width="250" height="150" alt="icon failed to load"/>
+![icon](assist/icon.jpg)
 
 CroTrait is a program written in python and the external software BLAST+ and MEGA-X need to be installed and configured locally:<br>
 
