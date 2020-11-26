@@ -1,7 +1,7 @@
 # CroTrait
 ![icon](assist/icon.jpg)
 
-CroTrait is a program written in python and the external software BLAST+ and MEGA-X need to be installed and configured locally:<br>
+**CroTrait** is a program written in python and the external software **BLAST+** and **MEGA** need to be installed and configured locally:<br>
 
 [MEGA](https://www.megasoftware.net/) (version X (64-bit))<br>
 
