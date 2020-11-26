@@ -1,5 +1,5 @@
 # CroTrait
-<div align=center><img width="150" height="150" src="https://github.com/happywlu/CroTrait/assist/icon.png"/></div>
+<img src="https://github.com/happywlu/CroTrait/tree/master/assist" height="200" width="300" align="center" />
 
 CroTrait is a program written in python and the external software BLAST+12 and MEGA-X13 need to be installed and configured locally:<br>
 
