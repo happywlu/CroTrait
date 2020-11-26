@@ -1,5 +1,5 @@
 # CroTrait
-![icon](assist/icon.jpg)
+![icon](assist/icon.jpg align="center")
 
 CroTrait is a program written in python and the external software BLAST+ and MEGA-X need to be installed and configured locally:<br>
 
