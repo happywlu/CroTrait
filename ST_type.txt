@@ -1,3 +1,0 @@
-id-129	ST60
-id-76	ST11
-turicensis_id-2235	new
