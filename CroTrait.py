@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+"""Traits for Crnobacter genus.
+
+written by Lu Wang
+contacted at wlubio@sina.com
+"""
 
 from __future__ import print_function
 import os
@@ -1099,5 +1104,4 @@ if __name__ == "__main__":
 
 	elif args.functiontype == 5:
 		visualization(Cro_result = args.result_table, prefix= args.prefix)
-
 
