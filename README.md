@@ -6,11 +6,6 @@
 This is the homepage of **CroTrait**, a software package that performs efficient inference of species, O serotypes and sequence types (STs) of *Cronobacter*. **CroTrait** was developed by *Lu Wang*. **CroTrait** is called from a directory containing one or multiple genome sequences and each genome sequence should be saved to a separate file in FASTA format. Input files can either be complete genomes or draft genomes. It is able to analyze hundreds of genomes data in a matter of hours on a ordinary PC. <br><br>
 Moreover, post data analysis and visualization module embedded in **CroTrait** further assist the user in checking and analyzing the data.
 
-## Citation
-if you use this software package please cite:<br>
-*Lu Wang, Wenxuan Zhu, Gege Lu, et al*. A portable tool for *in silico* species identification, serotyping and multilocus sequence typing of *Cronobacter* genus.
-***Journal of Clinical Microbiology*** 2021 Feb (going to be published)
-
 ## Environment set up
 **CroTrait** is a program written in **python** and the external software **BLAST+** and **MEGA** need to be installed and configured locally:<br>
 
@@ -51,11 +46,16 @@ if you use this software package please cite:<br>
 >>  example figure<br><br>
 ![icon](assist/icon2.jpg)
 
+## Citation
+if you use this software package please cite:<br>
+*Lu Wang, Wenxuan Zhu, Gege Lu, et al*. A portable tool for *in silico* species identification, serotyping and multilocus sequence typing of *Cronobacter* genus.
+***Journal of Clinical Microbiology*** 2021 Feb (going to be published)
+
 ## License
-**CroTrait** is a free software package, licensed udner **GPLv3**.
+**CroTrait** is a free software package, licensed udner **GPLv3**.<br><br>
 
 ## Feedback/Issues
-If you need assistance using *CroTrait*, you can get in touch by emailing *Lu Wang* (*wlubio@sina.com*), or by asking on Issues page.
+If you need assistance using *CroTrait*, you can get in touch by emailing *Lu Wang* (*wlubio@sina.com*), or by asking on Issues page.<br><br>
 
 
 
