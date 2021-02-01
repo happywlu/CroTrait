@@ -28,7 +28,7 @@ A portable tool for *in silico* species identification, serotyping and multilocu
 
 ## User guide
 
-> identify species, O serotypes and STs <br>
+> 1. identify species, O serotypes and STs <br>
 >> Assemblies with unknown species <br>
 >> *CroTrait -d directory [-p prefix]* <br>
 >> -p represent the prefix of result file <br><br>
