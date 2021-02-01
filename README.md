@@ -31,7 +31,7 @@ A portable tool for *in silico* species identification, serotyping and multilocu
 > identify species, O serotypes and STs <br>
 >> Assemblies with unknown species <br>
 >> *CroTrait -d directory [-p prefix]* <br>
->> -p represent the prefix of result file
+>> -p represent the prefix of result file <br><br>
 >> Assemblies with known species (one of the seven species of *Cronobacter*) <br>
 >> *CroTrait -d directory -s species [-p prefix]* <br>
 
