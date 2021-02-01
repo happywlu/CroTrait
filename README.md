@@ -49,7 +49,7 @@ Moreover, post data analysis and visualization module embedded in **CroTrait** f
 ## Citation
 if you use this software package please cite:<br>
 *Lu Wang, Wenxuan Zhu, Gege Lu, et al*. A portable tool for *in silico* species identification, serotyping and multilocus sequence typing of *Cronobacter* genus.
-***Journal of Clinical Microbiology*** 2021 Feb (going to be published)
+***Journal of XXX*** 2021 Feb (going to be published)
 
 ## License
 **CroTrait** is a free software package, licensed udner **GPLv3**.<br><br>
