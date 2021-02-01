@@ -43,9 +43,13 @@ A portable tool for *in silico* species identification, serotyping and multilocu
 >>$***CroTrait -t 3 -d directory [-p prefix]*** <br>
 
 >**4. post statistics analysis**<br>
->>$***CroTrait -t 4 -r result_table [-p prefix]*** <br>
+>>$***CroTrait -t 4 -r result_table*** <br>
 >> -r: the result created by "1", namely genomes with identified species, O serotypes and STs.
 >> after executing this command, 6 table will generated according to the species, O serotypes and ST.
+
+>**5. post visulization analysis**<br>
+>>  example figure<br><br>
+![icon](assist/icon2.jpg)
 
 
 
