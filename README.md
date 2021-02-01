@@ -7,7 +7,7 @@ This is the homepage of **CroTrait**, a software package that performs efficient
 Moreover, post data analysis and visualization module embedded in **CroTrait** further assist the user in checking and analyzing the data.
 
 ## Citation
-*Lu Wang, Wenxuan Zhu, Gege Lu, et al. <br>
+*Lu Wang, Wenxuan Zhu, Gege Lu, et al.* <br>
 A portable tool for *in silico* species identification, serotyping and multilocus sequence typing of *Cronobacter* genus.
 ***Journal of Clinical Microbiology*** 2021 Feb (submitted)
 
@@ -27,17 +27,17 @@ A portable tool for *in silico* species identification, serotyping and multilocu
 >**[BLAST+](https://blast.ncbi.nlm.nih.gov/)** (version 2.9.0)<br>
 
 ## User guide
-###**1. identify species, O serotypes and STs**<br>
+>**1. identify species, O serotypes and STs**<br>
 >>**1.1. Assemblies with unknown species**<br>
 >>\>***CroTrait -d directory [-p prefix]*** <br>
 >>-p represent the prefix of result file <br><br>
 >>**1.2. Assemblies with known species (one of the seven species of *Cronobacter*)**<br>
 >>\>***CroTrait -d directory -s species [-p prefix]*** <br>
-###**2. generate O antigen clusters (O-AGCs) pattern**<br>
+>**2. generate O antigen clusters (O-AGCs) pattern**
 >>\>***CroTrait -d genomes -s species***<br>
 >>example figure<br><br>
 ![icon](assist/icon1.jpg)
->3.**extract O-AGCs sequences in batch** <bar>
+>3.**extract O-AGCs sequences in batch**
 
 
 
