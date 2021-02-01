@@ -7,8 +7,8 @@ This is the homepage of **CroTrait**, a software package that performs efficient
 Moreover, post data analysis and visualization module embedded in **CroTrait** further assist the user in checking and analyzing the data.
 
 ## Citation
-*Lu Wang, Wenxuan Zhu, Gege Lu, et al.* <br>
-A portable tool for *in silico* species identification, serotyping and multilocus sequence typing of *Cronobacter* genus.
+if you use this software package please cite:<br>
+*Lu Wang, Wenxuan Zhu, Gege Lu, et al*. A portable tool for *in silico* species identification, serotyping and multilocus sequence typing of *Cronobacter* genus.
 ***Journal of Clinical Microbiology*** 2021 Feb (going to be published)
 
 ## Environment set up
@@ -44,12 +44,19 @@ A portable tool for *in silico* species identification, serotyping and multilocu
 
 >**4. post statistics analysis**<br>
 >>$***CroTrait -t 4 -r result_table*** <br>
->> -r: the result created by "1", namely genomes with identified species, O serotypes and STs.
->> after executing this command, 6 table will generated according to the species, O serotypes and ST.
+>> -r: the result created by "1", namely table with identified species, O serotypes and STs.<br>
+>> after executing this command, 6 table will generated according to the species, O serotypes and ST.<br>
 
 >**5. post visulization analysis**<br>
 >>  example figure<br><br>
 ![icon](assist/icon2.jpg)
+
+## License
+**CroTrait** is a free software package, licensed udner **GPLv3**.
+
+## Feedback/Issues
+If you need assistance using CroTrait, you can get in touch by emailing Lu Wang (*wlubio@sina.com*), or by asking on Issues page.
+
 
 
 
