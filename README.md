@@ -9,7 +9,7 @@ Moreover, post data analysis and visualization module embedded in **CroTrait** f
 ## Citation
 *Lu Wang, Wenxuan Zhu, Gege Lu, et al.* <br>
 A portable tool for *in silico* species identification, serotyping and multilocus sequence typing of *Cronobacter* genus.
-***Journal of Clinical Microbiology*** 2021 Feb (submitted)
+***Journal of Clinical Microbiology*** 2021 Feb (going to be published)
 
 ## Environment set up
 **CroTrait** is a program written in **python** and the external software **BLAST+** and **MEGA** need to be installed and configured locally:<br>
