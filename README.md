@@ -1,4 +1,4 @@
-# CroTrait
+# CroTrait: A portable tool for in silico species identification, serotyping and multilocus sequence typing of Cronobacter genus
 ![icon](assist/icon.jpg)
 
 **CroTrait** is a program written in python and the external software **BLAST+** and **MEGA** need to be installed and configured locally:<br>
@@ -9,3 +9,4 @@
 
 >**[python](https://www.python.org/)** (version 3.8.0) <br>
 
+## 
