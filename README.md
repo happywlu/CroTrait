@@ -29,15 +29,17 @@ A portable tool for *in silico* species identification, serotyping and multilocu
 ## User guide
 >**1. identify species, O serotypes and STs**<br>
 >>**1.1. Assemblies with unknown species**<br>
->>\>***CroTrait -d directory [-p prefix]*** <br>
+>>$***CroTrait -d directory [-p prefix]*** <br>
 >>-p represent the prefix of result file <br><br>
 >>**1.2. Assemblies with known species (one of the seven species of *Cronobacter*)**<br>
->>\>***CroTrait -d directory -s species [-p prefix]*** <br>
->**2. generate O antigen clusters (O-AGCs) pattern**
->>\>***CroTrait -d genomes -s species***<br>
+>>$***CroTrait -d directory -s species [-p prefix]*** <br>
+
+>**2. generate O antigen clusters (O-AGCs) pattern**<br>
+>>$***CroTrait -d genomes -s species***<br>
 >>example figure<br><br>
 ![icon](assist/icon1.jpg)
->3.**extract O-AGCs sequences in batch**
+
+>**3. extract O-AGCs sequences in batch**
 
 
 
