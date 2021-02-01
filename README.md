@@ -11,16 +11,13 @@ Moreover, post data analysis and visualization module embedded in **CroTrait** f
 
 >**[python](https://www.python.org/)** (version 3.8.0) <br>
 
->> **biopython** (version 1.78 or higher)
->> **numpy**
->> **matplotlib**
->> **pandas**
+>> **biopython** (version 1.78 or higher) <br>
+>> **numpy** <br>
+>> **matplotlib** <br>
+>> **pandas** <br>
 
 >**[MEGA](https://www.megasoftware.net/)** (version X (64-bit))<br>
 
 >**[BLAST+](https://blast.ncbi.nlm.nih.gov/)** (version 2.9.0)<br>
-
-
-
 
 ## 
