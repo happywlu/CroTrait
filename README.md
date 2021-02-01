@@ -33,11 +33,10 @@ A portable tool for *in silico* species identification, serotyping and multilocu
 >>\>***CroTrait -d directory [-p prefix]*** <br>
 >>-p represent the prefix of result file <br><br>
 >>**1.2. Assemblies with known species (one of the seven species of *Cronobacter*)**<br>
->>\>***CroTrait -d directory -s species [-p prefix]*** <br><br>
-
+>>\>***CroTrait -d directory -s species [-p prefix]*** <br>
 >2. **generate O antigen clusters (O-AGCs) pattern**<br>
 >>\>***CroTrait -d genomes -s species***<br>
->>example figure<br>
+>>example figure<br><br>
 ![icon](assist/icon1.jpg)
 
 
