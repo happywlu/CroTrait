@@ -1,4 +1,4 @@
-# CroTrait: \<br>A portable tool for *in silico* species identification, serotyping and multilocus sequence typing of *Cronobacter* genus
+# CroTrait: A portable tool for *in silico* species identification, serotyping and multilocus sequence typing of *Cronobacter* genus
 ![icon](assist/icon.jpg)
 
 ## Introduction
