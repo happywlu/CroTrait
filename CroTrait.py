@@ -1,16 +1,10 @@
 # -*- coding: utf-8 -*-
-"""Traits for Crnobacter genus.
-
-written by Lu Wang
-contacted at wlubio@sina.com
-"""
 
 from __future__ import print_function
 import os
 import sys
 import subprocess
 from Bio.Seq import Seq
-from Bio.Alphabet import IUPAC
 from Bio import Phylo
 import argparse
 import numpy as np
@@ -215,7 +209,7 @@ def generate_snp(genome, snp):
 					if int(result_split[8] < result_split[9]):
 						aim_sequence = my_sequence
 					else:
-						aim_sequence = Seq(my_sequence, IUPAC.unambiguous_dna)
+						aim_sequence = Seq(my_sequence)
 						aim_sequence = aim_sequence.reverse_complement()
 						aim_sequence = str(aim_sequence)
 					fragment = result_split[1].split("_")[0]
@@ -296,7 +290,7 @@ def O_antigen_cluster(OACs, genome, outfmt = 0):
 					elif outfmt == 1:
 						return(my_sequence)
 				elif float(galF_split[6]) > float(gnd_split[6]) and float(galF_split[8]) > float(galF_split[9]):
-					my_sequence = Seq(my_sequence, IUPAC.unambiguous_dna)
+					my_sequence = Seq(my_sequence)
 					my_sequence = my_sequence.reverse_complement()
 					my_sequence = str(my_sequence)
 					if outfmt == 0:
@@ -1104,4 +1098,5 @@ if __name__ == "__main__":
 
 	elif args.functiontype == 5:
 		visualization(Cro_result = args.result_table, prefix= args.prefix)
+
 
