@@ -52,7 +52,7 @@ if you use this software package please cite:<br>
 ***XXX*** 2021 Feb (going to be published)
 
 ## License
-**CroTrait** is a free software package, licensed udner **GPLv3**.<br><br>
+**CroTrait** is a free software package, licensed udner **MIT**.<br><br>
 
 ## Feedback/Issues
 If you need assistance using *CroTrait*, you can get in touch by emailing *Lu Wang* (*wlubio@sina.com*), or by asking on Issues page.<br><br>
