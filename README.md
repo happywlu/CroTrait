@@ -39,8 +39,8 @@ Moreover, post data analysis and visualization module embedded in **CroTrait** f
 
 >**4. post statistics analysis**<br>
 >>$***CroTrait -t 4 -r result_table*** <br>
->> -r: the result created by "1", namely table with identified species, O serotypes and STs.<br>
->> after executing this command, 6 table will generated according to the species, O serotypes and ST.<br>
+>> -r: the result created by "1", namely table with identified species and O serotypes.<br>
+>> after executing this command, 6 table will generated according to the species and O serotypes.<br>
 
 >**5. post visulization analysis**<br>
 >>  example figure<br><br>
