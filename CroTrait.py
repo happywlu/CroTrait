@@ -35,7 +35,6 @@ def randomcolor():
         color += colorArr[random.randint(0,14)]
     return "#"+color
 
-
 def tran_sequence(sequence, path1=os.getcwd(), path2=os.getcwd()):
 	"""
 	Parameters
