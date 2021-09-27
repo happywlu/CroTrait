@@ -3,8 +3,7 @@
 
 ## Introduction
 
-This is the homepage of **CroTrait**, a software package that performs efficient inference of species, O serotypes and STs of *Cronobacter*. **CroTrait** was developed by *Lu Wang*. **CroTrait** is called from a directory containing one or multiple genome sequences and each genome sequence should be saved to a separate file in FASTA format. Input files can either be complete genomes or draft genomes. It is able to analyze hundreds of genomes data in a matter of hours on an ordinary PC. <br><br>
-Moreover, post data analysis and visualization module embedded in **CroTrait** further assist the user in checking and analyzing the data.<br>
+This is the homepage of **CroTrait**, a software package that performs efficient inference of species, O serotypes and STs of *Cronobacter*. **CroTrait** was developed by *Lu Wang*. **CroTrait** is called from a directory containing one or multiple genome sequences and each genome sequence should be saved to a separate file in FASTA format. Input files can either be complete genomes or draft genomes. It is able to analyze hundreds of genomes data in a matter of hours on an ordinary PC. Moreover, post data analysis and visualization module embedded in **CroTrait** further assist the user in checking and analyzing the data.<br><br>
 
 **if you use this software package please cite:**<br>
 ***Lu Wang, et al*.** *In silico* species identification and serotyping for *Cronobacter* isolates by use of whole-genome sequencing data [J]. ***International Journal of Food Microbiology***, 2021, 358: 109405.
