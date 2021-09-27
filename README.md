@@ -7,7 +7,7 @@ This is the homepage of **CroTrait**, a software package that performs efficient
 Moreover, post data analysis and visualization module embedded in **CroTrait** further assist the user in checking and analyzing the data.<br>
 
 **if you use this software package please cite:**<br>
-***Lu Wang, et al*.** *In silico* species identification and serotyping for *Cronobacter* isolates by use of whole-genome sequencing data.
+***Lu Wang, et al*.** *In silico* species identification and serotyping for *Cronobacter* isolates by use of whole-genome sequencing data [J]. ***International Journal of Food Microbiology***, 2021, 358: 109405.
 
 ## Environment set up
 **CroTrait** is a program written in **python** and the external software **BLAST+** and **MEGA** need to be installed and configured locally:<br>
