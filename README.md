@@ -48,18 +48,11 @@ Moreover, post data analysis and visualization module embedded in **CroTrait** f
 
 ## Citation
 if you use this software package please cite:<br>
-*Lu Wang, et al*. A portable tool for *in silico* species identification and serotyping of *Cronobacter* genus.
+*Lu Wang, et al*. *In silico* species identification and serotyping for *Cronobacter* isolates by use of whole-genome sequencing data.
 
 
 ## License
-**CroTrait** is a free software package, licensed udner **MIT**.<br><br>
+**CroTrait** is a free software package, licensed under **MIT**.<br><br>
 
 ## Feedback/Issues
 If you need assistance using *CroTrait*, you can get in touch by emailing *Lu Wang* (*wlubio@sina.com*), or by asking on Issues page.<br><br>
-
-
-
-
-
-
-
